@@ -7,8 +7,8 @@
 	<ul class="users">
 		@foreach ($users as $user)
 			<li>
-				<img src="{{ $user->gravatar() }}" alt="{{ $user->name }}" class="gravatar" />
-				<a href="{{ route('users.show', $user->id) }}" class="username">{{ $user->name }}</a>
+				<img src="{{ $user->gravatar() }}" alt="{{ $user->username }}" class="gravatar" />
+				<a href="{{ route('users.show', $user->id) }}" class="username">{{ $user->username }}</a>
 			</li>
 		@endforeach
 	</ul>

@@ -13,7 +13,7 @@
 
         <div class="gravatar_edit">
           <a href="http://gravatar.com/emails" target="_blank">
-            <img src="{{ $user->gravatar('200') }}" alt="{{ $user->name }}" class="gravatar"/>
+            <img src="{{ $user->gravatar('200') }}" alt="{{ $user->username }}" class="gravatar"/>
           </a>
         </div>
 
@@ -22,13 +22,13 @@
             {{ csrf_field() }}
 
             <div class="form-group">
-              <label for="name">username：</label>
-              <input type="text" name="name" class="form-control" value="{{ $user->name }}">
+              <label for="username">username：</label>
+              <input type="text" name="username" class="form-control" value="{{ $user->username }}" disabled>
             </div>
 
             <div class="form-group">
               <label for="email">email：</label>
-              <input type="text" name="email" class="form-control" value="{{ $user->email }}" disabled>
+              <input type="text" name="email" class="form-control" value="{{ $user->email }}">
             </div>
 
             <div class="form-group">

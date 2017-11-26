@@ -1,9 +1,9 @@
 <li id="status--{{ $status->id }}">
 	<a href="{{ route('users.show', $user->id) }}">
-		<img src="{{ $user->gravatar() }}" atl="{{ $user->name }}" class="gravatar"/>
+		<img src="{{ $user->gravatar() }}" atl="{{ $user->username }}" class="gravatar"/>
 	</a>
 	<span class="user">
-		<a href="{{ route('users.show', $user->id) }}">{{ $user->name }}</a>
+		<a href="{{ route('users.show', $user->id) }}">{{ $user->username }}</a>
 	</span>
 	<span class="timestamp">
     {{ $status->created_at->diffForHumans() }}
