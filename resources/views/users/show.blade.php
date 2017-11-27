@@ -8,7 +8,6 @@
         <section class="user_info">
           @include('shared._user_info', ['user' => $user])
         </section>
-        
       </div>
     </div>
 

@@ -18,7 +18,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            session()->flash('info', 'You have already loged in, no need to login in again.');
+            session()->flash('info', 'You have already loged in, no need to login in again.77');
             return redirect('/');
         }
 
