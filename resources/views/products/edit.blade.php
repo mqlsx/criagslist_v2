@@ -16,22 +16,22 @@
 
           <div class="form-group">
             <label for="category">category：</label>
-            <textarea name="category" class="form-control" rows="1"></textarea>
+            <input type="category" name="category" class="form-control" value="{{ old('category') }}">
           </div>
 
           <div class="form-group">
             <label for="name">name：</label>
-            <textarea name="name" class="form-control" rows="1"></textarea>
+            <input type="name" name="name" class="form-control" value="{{ old('name') }}">
           </div>
 
           <div class="form-group">
             <label for="description">description：</label>
-            <textarea name="description" class="form-control" rows="3" ></textarea>
+            <input type="description" name="description" class="form-control" value="{{ old('description') }}">
           </div>
 
           <div class="form-group">
             <label for="contact">contact：</label>
-            <textarea name="contact" class="form-control" rows="2" placeholder=""></textarea>
+            <input type="contact" name="contact" class="form-control" value="{{ old('contact') }}">
           </div>
 
           <button type="submit" class="btn btn-primary">Submit</button>
