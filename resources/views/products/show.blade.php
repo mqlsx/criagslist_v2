@@ -5,7 +5,11 @@
   <div class="col-md-offset-2 col-md-8">
     <div class="col-md-12">
       <div class="col-md-offset-2 col-md-8">
-        <section class="user_info">
+        <section class="favourite">
+          @include('users._collect_form', ['product' => $product])
+        </section>
+
+        <section class="product_info">
           @include('products._product_info', ['product' => $product])
         </section>
         

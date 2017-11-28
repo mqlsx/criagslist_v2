@@ -27,7 +27,8 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        $collections = $user->collections()->paginate(10);
+        return view('users.show', compact('user', 'collections'));
     }
 
     public function gravatar($size = '100')
@@ -55,9 +56,9 @@ class UsersController extends Controller
         return redirect()->route('users.show', [$user]);
     }
 
-    public function edit(User $user)
+    public function edit()
     {
-        $this->authorize('update', $user);
+        $this->authorize('update', Auth::user());
         return view('users.edit', compact('user'));
     }
 
@@ -94,4 +95,6 @@ class UsersController extends Controller
         session()->flash('success', 'delete user succssfully！');
         return back();
     }
+
+
 }

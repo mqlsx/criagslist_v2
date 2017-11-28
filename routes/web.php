@@ -21,3 +21,7 @@ Route::post('login', 'SessionsController@store')->name('login');
 Route::delete('logout', 'SessionsController@destroy')->name('logout');
 
 Route::resource('products', 'ProductsController');
+
+
+Route::post('/users/collections/{product}', 'CollectionsController@store')->name('collections.store');
+Route::delete('/users/collections/{product}', 'CollectionsController@destroy')->name('collections.destroy');
