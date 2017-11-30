@@ -3,6 +3,9 @@
   <head>
     <title>@yield('title', 'Craigslist') - PHD values million</title>
     <link rel="stylesheet" href="/css/app.css">
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('styles')
   </head>
   
   <body>
@@ -16,7 +19,9 @@
       </div>
     </div>
 
-    <script src="/js/app.js"></script>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('scripts')
   </body>
 </html>
 

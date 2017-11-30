@@ -4,9 +4,11 @@
 @section('content')
 <div class="col-md-offset-3 col-md-6">
   <div class="panel panel-default">
+
     <div class="panel-heading">
       <h5 id="signup-head">Create account</h5>
     </div>
+
     <div class="panel-body">
     	@include('shared._errors')
 

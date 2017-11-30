@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Handlers\ImageUploadHandler;
 use App\Http\Requests;
 use App\Models\Product;
 use App\Models\User;
 use Auth;
 use Form;
+use Illuminate\Support\Facades\Input as Input;
 
 class ProductsController extends Controller
 {
@@ -34,7 +36,7 @@ class ProductsController extends Controller
         $this->validate($request, [
         	'category' => 'max:50',
             'name' => 'required|max:50',
-            'description' => 'required|max:1000',
+            'description' => 'required',
             'contact' => 'required|max:100',
         ]);
         
@@ -64,7 +66,7 @@ class ProductsController extends Controller
         $this->validate($request, [
         	'category' => 'max:50',
             'name' => 'required|max:50',
-            'description' => 'required|max:10000',
+            'description' => 'required',
             'contact' => 'required|max:100',
         ]);
 
@@ -94,5 +96,41 @@ class ProductsController extends Controller
         $product->delete();
         session()->flash('success', 'delete product succssfully！');
         return redirect()->route('users.show', [Auth::user()]);
+    }
+
+    public function uploadImage(Request $request, ImageUploadHandler $uploader)
+    {
+        // initialize return data
+        $data = [
+            'success'   => false,
+            'msg'       => 'upload fail!',
+            'file_path' => ''
+        ];
+        
+        if ($file = $request->upload_file) {
+            // save impage to local
+            $result = $uploader->save($request->upload_file, 'products', '1');
+            
+            // if save successfully
+            if ($result) {
+                $data['file_path'] = $result['path'];
+                $data['msg']       = "upload successfully!";
+                $data['success']   = true;
+            }
+        }
+        return $data;
+    }
+
+    public function image() {
+        return view('products.image');
+    }
+
+    public function uploadImage1() {
+        if (Input::hasFile('image')) {
+            echo 'Uploaded';
+            $file = Input::file('image');
+            $file->move('public/upload', $file->getClientOriginalName());
+            echo '<img src="public/upload/' . $file->getClientOriginalName() . '">';   
+        }
     }
 }

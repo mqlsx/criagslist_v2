@@ -25,3 +25,8 @@ Route::resource('products', 'ProductsController');
 
 Route::post('/users/collections/{product}', 'CollectionsController@store')->name('collections.store');
 Route::delete('/users/collections/{product}', 'CollectionsController@destroy')->name('collections.destroy');
+
+Route::post('upload_image', 'ProductsController@uploadImage')->name('products.upload_image');
+
+Route::get('image', 'ProductsController@image')->name('products.image');
+Route::post('image', 'ProductsController@uploadImage1')->name('products.image');

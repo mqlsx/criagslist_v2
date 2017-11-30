@@ -2,7 +2,7 @@
 <br>
 <label>category:</label>{{ $product->category }}
 <br>
-<label>description:</label>{{ $product->description }}
+<label>description:</label>{!! $product->description !!}
 <br>
 <label>contact:</label>{{ $product->contact }}
 <br>

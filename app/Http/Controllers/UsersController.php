@@ -56,9 +56,9 @@ class UsersController extends Controller
         return redirect()->route('users.show', [$user]);
     }
 
-    public function edit()
+    public function edit(User $user)
     {
-        $this->authorize('update', Auth::user());
+        $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
