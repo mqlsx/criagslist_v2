@@ -13,7 +13,7 @@
         @include('shared._errors')
 
 
-        <form method="POST" action="{{ route('products.store')}}">
+        <form method="POST" action="{{ route('products.store') }}">
             {{ csrf_field() }}
 
             <div class="form-group">
@@ -36,7 +36,7 @@
               <textarea name="contact" class="form-control" rows="2" placeholder="">{{ old('contact') }}</textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Continue</button>
         </form>
     </div>
   </div>

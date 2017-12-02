@@ -7,9 +7,10 @@ use App\Handlers\ImageUploadHandler;
 use App\Http\Requests;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\ProductImage;
 use Auth;
 use Form;
-use Illuminate\Support\Facades\Input as Input;
+
 
 class ProductsController extends Controller
 {
@@ -28,31 +29,11 @@ class ProductsController extends Controller
 
     public function show(Product $product)
     {
-        return view('products.show', compact('product'));
+        $images = $product->images()->orderBy('created_at', 'asc')->paginate(5);
+        return view('products.show', compact('product', 'images'));
     }
 
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-        	'category' => 'max:50',
-            'name' => 'required|max:50',
-            'description' => 'required',
-            'contact' => 'required|max:100',
-        ]);
-        
-
-        $product = Product::create([
-            'category' => $request->category,
-            'name' => $request->name,
-            'description' => $request->description,
-            'contact' => $request->contact,
-            'user_id' => Auth::user()->id,
-        ]);
-
-
-        session()->flash('success', 'Create product successfully!');
-        return redirect()->route('products.show', [$product]);
-    }
+    
 
     public function edit(Product $product)
     {
@@ -61,7 +42,7 @@ class ProductsController extends Controller
         
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $product_id)
     {
         $this->validate($request, [
         	'category' => 'max:50',
@@ -70,18 +51,17 @@ class ProductsController extends Controller
             'contact' => 'required|max:100',
         ]);
 
-        //$this->authorize('update', $user);
-
+        $this->authorize('update', Auth::user());
+        $product = Product::find($product_id);
         $product->update([
             'category' => $request->category,
             'name' => $request->name,
             'description' => $request->description,
-            'contact' => $request->request
+            'contact' => $request->contact
         ]);
         
-
-        session()->flash('success', 'Update product successfully');
-        return redirect()->route('products.show', $product);
+        $images = $product->images()->orderBy('created_at', 'desc')->paginate(5);
+        return view('products.uploadImage', compact('product', 'images'));
     }
 
     public function index()
@@ -98,32 +78,11 @@ class ProductsController extends Controller
         return redirect()->route('users.show', [Auth::user()]);
     }
 
-    public function uploadImage(Request $request, ImageUploadHandler $uploader)
-    {
-        // initialize return data
-        $data = [
-            'success'   => false,
-            'msg'       => 'upload fail!',
-            'file_path' => ''
-        ];
-        
-        if ($file = $request->upload_file) {
-            // save impage to local
-            $result = $uploader->save($request->upload_file, 'products', '1');
-            
-            // if save successfully
-            if ($result) {
-                $data['file_path'] = $result['path'];
-                $data['msg']       = "upload successfully!";
-                $data['success']   = true;
-            }
-        }
-        return $data;
-    }
+    
 
-    public function image() {
-        return view('products.image');
-    }
+    
+
+    
 
     public function uploadImage1() {
         if (Input::hasFile('image')) {
@@ -133,4 +92,30 @@ class ProductsController extends Controller
             echo '<img src="public/upload/' . $file->getClientOriginalName() . '">';   
         }
     }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'category' => 'max:50',
+            'name' => 'required|max:50',
+            'description' => 'required',
+            'contact' => 'required|max:100',
+        ]);
+        
+
+        $product = Product::create([
+            'category' => $request->category,
+            'name' => $request->name,
+            'description' => $request->description,
+            'contact' => $request->contact,
+            'user_id' => Auth::user()->id,
+        ]);
+
+
+        //session()->flash('success', 'Create product successfully!');
+        //return redirect()->route('products.show', [$product]);
+        return redirect()->route('products.uploadImage', [$product]);
+    }
+
+    
 }

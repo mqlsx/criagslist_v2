@@ -12,6 +12,23 @@
         <section class="product_info">
           @include('products._product_info', ['product' => $product])
         </section>
+
+        <div class="col-md-12" style="padding-left:0;">
+        @if (!empty($images))
+          <ol style="padding-left:0;">
+            @foreach ($images as $image)
+              <div>
+                <img src= "{{ $image->url }}" width="150px" height="150px" style="padding-bottom:10;">
+                <br>
+              </div>
+            @endforeach
+          </ol>
+        @endif
+        </div>
+
+        <a href="{{ route('products.edit', $product->id) }}">
+          <button class="btn btn-sm btn-normal">Edit</button>
+        </a>
         
         @can('destroy', $product)
 	      <form action="{{ route('products.destroy', $product->id) }}" method="POST">
@@ -20,9 +37,7 @@
 	        <button type="submit" class="btn btn-sm btn-danger status-delete-btn">Delete</button>
 	      </form>
 
-	      <a href="{{ route('products.edit', $product->id) }}">
-	        <button class="btn btn-sm btn-normal">Edit</button>
-	      </a>
+	      
   		@endcan
       </div>
     </div>

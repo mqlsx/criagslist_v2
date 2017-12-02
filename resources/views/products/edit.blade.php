@@ -12,8 +12,9 @@
     <div class="panel-body">
       @include('shared._errors')
 
-      <form method="POST" action="{{ route('products.store')}}" accept-charset="UTF-8">
+      <form method="POST" action="{{ route('products.update', $product->id )}}" accept-charset="UTF-8">
         {{ csrf_field() }}
+        {{ method_field('PATCH') }}
 
         <div class="form-group">
           <label for="name">name：</label>
@@ -31,12 +32,6 @@
         </div>
 
         <div class="form-group">
-            <label id='label_image' for='image'>Select images to upload:</label>
-            <input type='file' name='image' id='image'>
-            <input type='submit' value="Upload" name='submit' id='submit_image'>
-        </div>
-
-        <div class="form-group">
           <label for="description">description：</label>
           <textarea name="description" class="form-control" id="editor" rows="3" placeholder="" required>
             {{ $product->description }}
@@ -44,7 +39,7 @@
         </div>
 
         <div class="well well-sm">
-          <button type="submit" class="btn btn-primary col-md-12">Submit</button>
+          <button type="submit" class="btn btn-primary col-md-12">Continue</button>
         </div>
       </form>
     </div>
@@ -68,13 +63,13 @@
       var editor = new Simditor({
           textarea: $('#editor'),
           upload: {
-              url: '{{ route('products.upload_image') }}',
+              url: '',
               params: { _token: '{{ csrf_token() }}' },
               fileKey: 'upload_file',
               connectionCount: 10,
               leaveConfirm: 'uploading image...'
           },
-          pasteImage: true,
+          pasteImage: false,
       });
   });
   </script>

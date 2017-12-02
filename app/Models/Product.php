@@ -30,4 +30,17 @@ class Product extends Model
     {
         return $this->belongsToMany(User::Class, 'wishlist', 'product_id', 'user_id')->withTimestamps();
     }
+
+    public function images() 
+    {
+        return $this->hasMany(ProductImage::Class);
+    }
+
+    public function feed()
+    {
+        dd($this->image()->orderBy('created_at', 'asc'));
+        //return $this->image()->orderBy('created_at', 'asc');
+    }
+
+    
 }
