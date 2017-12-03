@@ -25,7 +25,9 @@
         <a href="{{ route('products.edit', $product->id) }}">
           <button class="btn btn-sm btn-normal">Edit</button>
         </a>
+        @endcan
 
+        @can('destroy', $product)
 	      <form action="{{ route('products.destroy', $product->id) }}" method="POST">
 	        {{ csrf_field() }}
 	        {{ method_field('DELETE') }}

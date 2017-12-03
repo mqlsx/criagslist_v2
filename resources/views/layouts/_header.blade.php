@@ -10,7 +10,7 @@
 
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-user-o fa-x " aria-hidden="true"></i>
+                <i class="fa fa-user-circle fa-x " aria-hidden="true"></i>
                 {{ Auth::user()->username }}
               </a>
               <ul class="dropdown-menu">
@@ -21,6 +21,15 @@
                   </a>
                 </li>
 
+                <li>
+                  <a href="{{ route('users.posting', Auth::user()->id) }}">
+                    <i class="fa fa-photo" aria-hidden="true"></i>
+                    <span class="">Your Postings</span>
+                  </a>
+                </li>
+
+
+                <li class="divider"></li>
                 <li >
                   <a href="{{ route('products.create') }}">
                     <i class="fa fa-plus-circle fa-x" aria-hidden="true"></i>
@@ -29,7 +38,7 @@
                 </li>
 
                 <li >
-                  <a href="{{ route('products.create') }}">
+                  <a href="{{ route('users.wishlist', Auth::user()->id) }}">
                     <i class="fa fa-heart-o fa-x" aria-hidden="true"></i>
                     <span class="">Wishlist</span>
                   </a>
