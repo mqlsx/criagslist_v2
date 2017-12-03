@@ -25,6 +25,8 @@ Route::get('/', 'StaticPagesController@home')->name('home');
 Route::get('signup', 'UsersController@create')->name('signup');
 
 Route::resource('users', 'UsersController');
+Route::get('users/{user}/wishlist', 'UsersController@wishlist')->name('users.wishlist');
+Route::get('users/{user}/posting', 'UsersController@posting')->name('users.posting');
 
 
 Route::get('login', 'SessionsController@create')->name('login');

@@ -21,15 +21,13 @@
           </a>
         </section>
       </div>
-    </div>
 
-    <!-- wishlist -->
-    <div class="col-md-12">
-      <section class="collection_info">
-        @include('users._collections', ['collections' => $collections])
-      </section>
-    </div>
 
+      
+    </div>
   </div>
+
+  
 </div>
+
 @stop

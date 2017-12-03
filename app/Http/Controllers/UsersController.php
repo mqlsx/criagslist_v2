@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\User;
+use App\Models\Product;
 use Auth;
 
 class UsersController extends Controller
@@ -73,8 +74,10 @@ class UsersController extends Controller
     public function show(User $user)
     {
         $this->authorize('show', $user);
-        $collections = $user->collections()->paginate(10);
-        return view('users.show', compact('user', 'collections'));
+        $products = new Product;
+        $products = $products->where('user_id', '=', $user->id);
+        $products = $products->orderBy('created_at', 'desc')->paginate(10);
+        return view('users.show', compact('user', 'products'));
     }
 
     public function index()
@@ -92,5 +95,17 @@ class UsersController extends Controller
         return back();
     }
 
+    public function wishlist(User $user)
+    {
+        $collections = $user->collections()->orderBy('created_at', 'desc')->paginate(10);
+        return view('users.wishlist', compact('user', 'collections'));
+    }
 
+    public function posting(User $user)
+    {
+        $products = new Product;
+        $products = $products->where('user_id', '=', $user->id);
+        $products = $products->orderBy('created_at', 'desc')->paginate(10);
+        return view('users.posting', compact('user', 'products'));
+    }
 }
