@@ -32,6 +32,11 @@
             </div>
 
             <div class="form-group">
+              <label for="price">price：</label>
+              <textarea name="price" class="form-control" rows="1" placeholder="">{{ old('price') }}</textarea>
+            </div>
+
+            <div class="form-group">
               <label for="contact">contact：</label>
               <textarea name="contact" class="form-control" rows="2" placeholder="">{{ old('contact') }}</textarea>
             </div>

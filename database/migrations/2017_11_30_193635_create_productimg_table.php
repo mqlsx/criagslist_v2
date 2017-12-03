@@ -18,6 +18,7 @@ class CreateProductimgTable extends Migration
             $table->integer('product_id')->index();
             $table->string('url');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

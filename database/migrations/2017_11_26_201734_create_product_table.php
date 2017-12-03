@@ -20,8 +20,10 @@ class CreateProductTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('contact');
+            $table->float('price');
             $table->index(['created_at']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

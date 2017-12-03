@@ -5,13 +5,35 @@
       <nav>
         <ul class="nav navbar-nav navbar-right">
           @if (Auth::check())
-            <li><a href="{{ route('products.index') }}">products list</a></li>
+
+
+
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                {{ Auth::user()->name }} <b class="caret"></b>
+                <i class="fa fa-user-o fa-x " aria-hidden="true"></i>
+                {{ Auth::user()->username }}
               </a>
               <ul class="dropdown-menu">
-                <li><a href="{{ route('users.show', Auth::user()->id) }}">个人中心</a></li>
+                <li>
+                  <a href="{{ route('users.show', Auth::user()->id) }}">
+                    <i class="fa fa-vcard" aria-hidden="true"></i>
+                    <span class="">Your Account</span>
+                  </a>
+                </li>
+
+                <li >
+                  <a href="{{ route('products.create') }}">
+                    <i class="fa fa-plus-circle fa-x" aria-hidden="true"></i>
+                    <span class="">New Post</span>
+                  </a>
+                </li>
+
+                <li >
+                  <a href="{{ route('products.create') }}">
+                    <i class="fa fa-heart-o fa-x" aria-hidden="true"></i>
+                    <span class="">Wishlist</span>
+                  </a>
+                </li>
                 
                 <li class="divider"></li>
                 <li>
@@ -25,6 +47,7 @@
                 </li>
               </ul>
             </li>
+
           @else
             <li><a href="{{ route('login') }}">login</a></li>
           @endif

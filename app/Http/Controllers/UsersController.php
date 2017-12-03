@@ -12,7 +12,7 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth', [            
-            'except' => ['show', 'create', 'store', 'index']
+            'except' => ['create', 'store']
         ]);
 
         $this->middleware('guest', [
@@ -23,18 +23,6 @@ class UsersController extends Controller
     public function create()
     {
         return view('users.create');
-    }
-
-    public function show(User $user)
-    {
-        $collections = $user->collections()->paginate(10);
-        return view('users.show', compact('user', 'collections'));
-    }
-
-    public function gravatar($size = '100')
-    {
-        $hash = md5(strtolower(trim($this->attributes['email'])));
-        return "http://www.gravatar.com/avatar/$hash?s=$size";
     }
 
     public function store(Request $request)
@@ -82,8 +70,16 @@ class UsersController extends Controller
         return redirect()->route('users.show', $user->id);
     }
 
+    public function show(User $user)
+    {
+        $this->authorize('show', $user);
+        $collections = $user->collections()->paginate(10);
+        return view('users.show', compact('user', 'collections'));
+    }
+
     public function index()
     {
+        $this->authorize('index', Auth::user());
         $users = User::paginate(10);
         return view('users.index', compact('users'));
     }

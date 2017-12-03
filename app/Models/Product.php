@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
 	use Notifiable;
+    use SoftDeletes;
 
 	/**
      * The attributes that are mass assignable.
@@ -17,8 +19,9 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'category', 'name', 'description', 'contact', 'user_id'
+        'category', 'name', 'description', 'contact', 'user_id', 'price'
     ];
+    protected $dates = ['deleted_at'];
 
 
     public function user()

@@ -36,14 +36,14 @@
 
 
       <div class="col-md-12" style="padding-left:0;">
-
       @if (!empty($images))
+        
         <ol style="padding-left:0;">
           @foreach ($images as $image)
             <div>
               <img src= "{{ $image->url }}" width="150px" height="150px" style="padding-bottom:10;">
               @can('destroy', $image)
-              <form action="{{ route('images.destroy', $image->id) }}" method="POST">
+              <form action="{{ route('images.destroy', $image) }}" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
                 <button type="submit" class="btn btn-danger">Remove</button>

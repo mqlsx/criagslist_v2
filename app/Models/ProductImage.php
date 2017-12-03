@@ -22,14 +22,6 @@ class ProductImage extends Model
     {
         return $this->belongsTo(Product::class);
     }
-
-    // public function addUrl($url)
-    // {
-    //     if (!is_array($url)) {
-    //         $url = compact('url');
-    //     }
-    //     $this->imageUrl()->sync($url, false);
-    // }
 }
 
 

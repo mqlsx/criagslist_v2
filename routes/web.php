@@ -26,6 +26,7 @@ Route::get('signup', 'UsersController@create')->name('signup');
 
 Route::resource('users', 'UsersController');
 
+
 Route::get('login', 'SessionsController@create')->name('login');
 Route::post('login', 'SessionsController@store')->name('login');
 Route::delete('logout', 'SessionsController@destroy')->name('logout');
@@ -36,11 +37,17 @@ Route::delete('/users/collections/{product}', 'CollectionsController@destroy')->
 
 // Route::post('upload_image', 'ProductsController@uploadImage')->name('products.upload_image');
 
-Route::get('image', 'ProductsController@image')->name('products.image');
-Route::post('image', 'ProductsController@uploadImage1')->name('products.image');
 
-
-Route::resource('products', 'ProductsController');
+Route::resource('products', 'ProductsController', ['except' => ['index', 'store']]);
+Route::get('admin/profile', ['middleware' => 'auth', function () {
+    //
+}]);
 Route::get('products/{product}/uploadImage', 'ImagesController@image')->name('products.uploadImage');
 Route::post('products/{product}/uploadImage', 'ImagesController@uploadImage')->name('products.uploadImage');
 Route::resource('images', 'ImagesController', ['except' => ['create']]);
+
+
+
+Route::post('/products', 'ProductsController@index')->name('products.search');
+Route::get('/products', 'ProductsController@index')->name('products.index');
+Route::post('/products/create', 'ProductsController@store')->name('products.store');

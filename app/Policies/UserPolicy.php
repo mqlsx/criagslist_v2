@@ -9,14 +9,20 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function show(User $currentUser, User $user)
     {
-        //
+        if ($currentUser->id === 1)
+            return true;
+        else 
+            return $currentUser->id === $user->id;
+    }
+
+    public function index(User $currentUser, User $user)
+    {
+        if ($currentUser->id === 1)
+            return true;
+        else 
+            return false;
     }
 
     public function update(User $currentUser, User $user)
@@ -26,6 +32,9 @@ class UserPolicy
 
     public function destroy(User $currentUser, User $user)
     {
-        return $currentUser->is_admin && $currentUser->id !== $user->id;
+        if ($currentUser->id === 1)
+            return true;
+        else 
+            return $currentUser->id === $user->id;
     }
 }

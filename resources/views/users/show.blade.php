@@ -11,14 +11,7 @@
         </section>
       </div>
 
-      <!-- postings -->
-      <div class="col-md-offset-2 col-md-8">
-        <section class="creat_product">
-          <a href="{{ route('products.create') }}">
-            <button class="btn btn-normal">Create a product</button>
-          </a>
-        </section>
-      </div>
+      
 
       <!-- edit profile -->
       <div class="col-md-offset-2 col-md-8">

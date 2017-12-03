@@ -2,9 +2,11 @@
 <html>
   <head>
     <title>@yield('title', 'Craigslist') - PHD values million</title>
-    <link rel="stylesheet" href="/css/app.css">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     @yield('styles')
   </head>
   

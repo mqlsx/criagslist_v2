@@ -18,6 +18,10 @@ class ImagesController extends Controller
     }
 
     public function image(Product $product) {
+        if ($product->user_id === Auth::user()->id)
+            ;
+        else
+            return back();
         $images = $product->images()->orderBy('created_at', 'desc')->paginate(5);
         return view('products.uploadImage', compact('product', 'images'));
     }
@@ -25,6 +29,11 @@ class ImagesController extends Controller
 
     public function uploadImage(Request $request, Product $product)
     {
+        if ($product->user_id === Auth::user()->id)
+            ;
+        else
+            return back();
+        
         if (Input::hasFile('image')) {
             $file = Input::file('image');
 
@@ -59,7 +68,6 @@ class ImagesController extends Controller
     public function destroy($img)
     {
         $img = ProductImage::find($img);
-
         $this->authorize('destroy', $img);
         $img->delete();
         session()->flash('success', 'pic已被成功删除！');
