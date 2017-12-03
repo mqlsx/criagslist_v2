@@ -45,5 +45,4 @@ class Product extends Model
         //return $this->image()->orderBy('created_at', 'asc');
     }
 
-    
 }
