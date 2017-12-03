@@ -92,7 +92,7 @@ class UsersController extends Controller
         $this->authorize('destroy', $user);
         $user->delete();
         session()->flash('success', 'delete user succssfully！');
-        return back();
+        return redirect()->route('users.index');
     }
 
     public function wishlist(User $user)

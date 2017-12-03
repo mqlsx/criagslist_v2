@@ -34,7 +34,5 @@ class UserPolicy
     {
         if ($currentUser->id === 1)
             return true;
-        else 
-            return $currentUser->id === $user->id;
     }
 }
