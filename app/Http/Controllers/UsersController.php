@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Models\User;
 use App\Models\Product;
 use Auth;
+use App\Models\ProductImage;
 
 class UsersController extends Controller
 {
@@ -90,6 +91,25 @@ class UsersController extends Controller
     public function destroy(User $user)
     {
         $this->authorize('destroy', $user);
+
+        // delete wishlest
+        $user->collections()->detach();
+        
+        // delete the postings
+        $products = $user->products()->get();
+        foreach ($products as $product) {
+
+            // delete image
+            $images = $product->images()->get();
+            foreach ($images as $img) {
+                $img->delete();
+            }
+            // delete product
+            $product->delete();
+        }
+
+
+        // delete user 
         $user->delete();
         session()->flash('success', 'delete user succssfully！');
         return redirect()->route('users.index');

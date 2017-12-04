@@ -159,6 +159,14 @@ class ProductsController extends Controller
     public function destroy(Product $product)
     {
         $this->authorize('destroy', $product);
+
+        // delete image
+        $images = $product->images()->get();
+        foreach ($images as $img) {
+            $img->delete();
+        }
+        
+        // delete product
         $product->delete();
         session()->flash('success', 'delete product succssfully！');
         return redirect()->route('users.show', [Auth::user()]);

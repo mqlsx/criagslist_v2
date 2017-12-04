@@ -13,13 +13,18 @@ class CreateProductimgTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
+        
         Schema::create('ProductImg', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id')->index();
+            $table->unsignedInteger('product_id')->index();
             $table->string('url');
             $table->timestamps();
             $table->softDeletes();
+            $table->engine = 'InnoDB';
         });
+
+        
     }
 
     /**

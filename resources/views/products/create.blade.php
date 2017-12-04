@@ -2,10 +2,10 @@
 @section('title', 'Create a new product')
 
 @section('content')
-<div class="col-md-offset-3 col-md-6">
+<div class="col-md-offset-2 col-md-8">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h5 id="create-product-head">Create product</h5>
+      <h5 id="create-product-head">Create a new post</h5>
     </div>
 	
 	<div class="panel-body">
@@ -17,33 +17,56 @@
             {{ csrf_field() }}
 
             <div class="form-group">
-              <label for="category">category：</label>
-              <textarea name="category" class="form-control" rows="1" placeholder="">{{ old('category') }}</textarea>
-            </div>
-
-            <div class="form-group">
               <label for="name">name：</label>
-              <textarea name="name" class="form-control" rows="1" placeholder="">{{ old('name') }}</textarea>
+              <input type="text" name="name" class="form-control">
             </div>
 
             <div class="form-group">
-              <label for="description">description：</label>
-              <textarea name="description" class="form-control" rows="3" placeholder="">{{ old('description') }}</textarea>
+              <label for="category">category：</label>
+              <input type="text" name="category" class="form-control">
             </div>
 
             <div class="form-group">
               <label for="price">price：</label>
-              <textarea name="price" class="form-control" rows="1" placeholder="">{{ old('price') }}</textarea>
+              <input type="text" name="price" class="form-control">
             </div>
 
             <div class="form-group">
               <label for="contact">contact：</label>
-              <textarea name="contact" class="form-control" rows="2" placeholder="">{{ old('contact') }}</textarea>
+              <input type="text" name="contact" class="form-control">
             </div>
 
-            <button type="submit" class="btn btn-primary">Continue</button>
+            <div class="form-group">
+              <label for="description">description：</label>
+              <textarea name="description" class="form-control" id="editor" rows="2" placeholder="" required>
+              </textarea>
+            </div>
+
+            <div class="">
+              <button type="submit" class="btn btn-primary col-md-12">Continue</button>
+            </div>
         </form>
     </div>
   </div>
 </div>
+@stop
+
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
+@stop
+
+@section('scripts')
+    <script type="text/javascript"  src="{{ asset('js/module.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/hotkeys.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/uploader.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/simditor.js') }}"></script>
+
+    <script>
+    $(document).ready(function(){
+        var editor = new Simditor({
+            textarea: $('#editor'),
+        });
+    });
+    </script>
+
 @stop

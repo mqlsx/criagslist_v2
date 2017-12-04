@@ -13,9 +13,10 @@ class CreateProductTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
+            $table->unsignedInteger('user_id');
             $table->string('category');
             $table->string('name');
             $table->text('description');
@@ -24,7 +25,10 @@ class CreateProductTable extends Migration
             $table->index(['created_at']);
             $table->timestamps();
             $table->softDeletes();
+            $table->engine = 'InnoDB';
         });
+
+
     }
 
     /**

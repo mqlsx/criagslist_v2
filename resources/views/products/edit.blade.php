@@ -18,27 +18,27 @@
 
         <div class="form-group">
           <label for="name">name：</label>
-          <input type="name" name="name" class="form-control" value="{{ $product->name }}">
+          <input type="text" name="name" class="form-control" value="{{ $product->name }}">
         </div>
 
         <div class="form-group">
           <label for="category">category：</label>
-          <input type="category" name="category" class="form-control" value="{{ $product->category }}">
+          <input type="text" name="category" class="form-control" value="{{ $product->category }}">
         </div>
 
         <div class="form-group">
           <label for="contact">contact：</label>
-          <input type="contact" name="contact" class="form-control" value="{{ $product->contact }}">
+          <input type="text" name="contact" class="form-control" value="{{ $product->contact }}">
         </div>
 
         <div class="form-group">
           <label for="description">description：</label>
-          <textarea name="description" class="form-control" id="editor" rows="3" placeholder="" required>
+          <textarea name="description" class="form-control" id="editor" rows="2" placeholder="" required>
             {{ $product->description }}
           </textarea>
         </div>
 
-        <div class="well well-sm">
+        <div class="">
           <button type="submit" class="btn btn-primary col-md-12">Continue</button>
         </div>
       </form>

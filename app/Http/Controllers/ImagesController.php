@@ -70,7 +70,7 @@ class ImagesController extends Controller
         $img = ProductImage::find($img);
         $this->authorize('destroy', $img);
         $img->delete();
-        session()->flash('success', 'pic已被成功删除！');
+        session()->flash('success', 'the image has been deleted successfully！');
         $imgs = Product::find($img->product_id)->images()->orderBy('created_at', 'asc')->paginate(30); 
         $product = Product::find($img->product_id);
         return redirect()->route('products.uploadImage', compact('product'));

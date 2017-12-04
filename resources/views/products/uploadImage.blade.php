@@ -6,7 +6,7 @@
   <div class="panel panel-default">
 
     <div class="panel-heading">
-      <h5>Upload Images!!!!</h5>
+      <h5>Upload images</h5>
     </div>
 
     <div class="panel-body">
@@ -19,17 +19,19 @@
         <form method="POST" action="{{ route('products.uploadImage', $product->id) }}" enctype="multipart/form-data" class="form-inline">
           {{ csrf_field() }}
 
+
           <div class="form-group">
-              
-              <input type='file' name='image' id='image' style="margin-bottom: 0;">
+              <input type='file' name='image' style="margin-bottom: 0;">
           </div>
 
-          <button type="submit" class="btn btn-normal">Upload</button>
+          <button type="submit" class="btn btn-primary">Upload</button>
         </form>
+
+
       </div>
       <div class="col-md-4">
         <a href="{{ route('products.show', $product) }}">
-          <button class="btn btn-normal">Done with images</button>
+          <button class="btn btn-primary">Done with images</button>
         </a>
       </div>
     </div>
@@ -49,7 +51,6 @@
                 <button type="submit" class="btn btn-danger">Remove</button>
               </form>
               @endcan
-              <br>
             </div>
           @endforeach
         </ol>
@@ -66,5 +67,4 @@
   </div>
 </div>
 @stop
-
 
