@@ -19,12 +19,13 @@
         <section class="work">
           @foreach ($products as $product)
           <figure class="white">
+            
             <a href="{{ route('products.show', $product->id) }}">
-                <img src="{{ $product->img }}" alt="" width="400" height="400"/>
+                <img src="{{ $product->img }}" alt="" style="width:200px;height:200px;margin-left:30px"/>
                 <dl>
                     <dt>{{ $product->name }}</dt>
                     <dt>${{ $product->price }}</dt>
-                    <dd>{{ $product->description }}</dd>
+                    <dd>{!! $product->description !!}</dd>
                 </dl>
             </a>
             <div id="wrapper-part-info">

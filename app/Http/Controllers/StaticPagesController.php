@@ -39,7 +39,7 @@ class StaticPagesController extends Controller
         foreach ($products as $product) {
             $image = $product->images()->first();
             if ($image==null) {
-                $product->img = "img/not_uploaded.png";
+                $product->img = "/img/not_uploaded.png";
             } else {
                 $product->img = $image['url'];
             }
