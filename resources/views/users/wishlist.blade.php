@@ -15,7 +15,7 @@
   <script type="text/javascript" src="/js/platz/jquery.animate-shadow-min.js"></script>
   <script type="text/javascript" src="/js/platz/main.js"></script>
   <h1 style="font-size:2em;">Wishlist</h1>
-  <div id="wrapper-container">
+  <div id="wrapper-container" style="display: inline-block;">
     <div class="container object">
       <div id="main-container-image">
         <section class="work">
@@ -23,7 +23,7 @@
           <figure class="white">
             
             <a href="{{ route('products.show', $product->id) }}">
-                <img src="{{ $product->images()->first()->url }}" alt="" style="width:200px;height:200px;margin-left:30px"/>
+                <img src="{{ $product->img }}" alt="" style="width:200px;height:200px;margin-left:30px"/>
                 <dl>
                     <dt>{{ $product->name }}</dt>
                     <dt>${{ $product->price }}</dt>
@@ -38,6 +38,9 @@
           @endforeach
         </section>
       </div>
+    </div>
+    <div style="width: 100%;text-align: center;">
+      {!! $products->render() !!}
     </div>
   </div>
 @stop

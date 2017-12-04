@@ -14,7 +14,8 @@
   <script type="text/javascript" src="js/platz/jquery.animate-shadow-min.js"></script>
   <script type="text/javascript" src="js/platz/main.js"></script>
   <div id="wrapper-container">
-    <div class="container object">
+    <div class="container object "style="display: inline-block;
+">
       <div>
           <form  class="form-inline" action="{{ route('home') }}" method='POST'>
             {{ csrf_field() }}
@@ -52,5 +53,10 @@
         </section>
       </div>
     </div>
+
+    <div style="
+  width: 100%;
+  text-align: center;
+">{!! $products->render() !!}</div>
   </div>
 @stop

@@ -118,6 +118,14 @@ class UsersController extends Controller
     public function wishlist(User $user)
     {
         $products = $user->collections()->orderBy('created_at', 'desc')->paginate(10);
+        foreach ($products as $product) {
+            $image = $product->images()->first();
+            if ($image==null) {
+                $product->img = "/img/not_uploaded.png";
+            } else {
+                $product->img = $image['url'];
+            }
+        }
         return view('users.wishlist', compact('user', 'products'));
     }
 
@@ -125,7 +133,15 @@ class UsersController extends Controller
     {
         $products = new Product;
         $products = $products->where('user_id', '=', $user->id);
-        $products = $products->orderBy('created_at', 'desc')->paginate(10);
+        $products = $products->orderBy('created_at', 'desc')->paginate(8);
+        foreach ($products as $product) {
+            $image = $product->images()->first();
+            if ($image==null) {
+                $product->img = "/img/not_uploaded.png";
+            } else {
+                $product->img = $image['url'];
+            }
+        }
         return view('users.posting', compact('user', 'products'));
     }
 }
