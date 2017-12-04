@@ -77,14 +77,14 @@ class UsersController extends Controller
         $this->authorize('show', $user);
         $products = new Product;
         $products = $products->where('user_id', '=', $user->id);
-        $products = $products->orderBy('created_at', 'desc')->paginate(10);
+        $products = $products->orderBy('created_at', 'desc')->paginate(8);
         return view('users.show', compact('user', 'products'));
     }
 
     public function index()
     {
         $this->authorize('index', Auth::user());
-        $users = User::paginate(10);
+        $users = User::paginate(8);
         return view('users.index', compact('users'));
     }
 
@@ -117,7 +117,7 @@ class UsersController extends Controller
 
     public function wishlist(User $user)
     {
-        $products = $user->collections()->orderBy('created_at', 'desc')->paginate(10);
+        $products = $user->collections()->orderBy('created_at', 'desc')->paginate(8);
         foreach ($products as $product) {
             $image = $product->images()->first();
             if ($image==null) {
