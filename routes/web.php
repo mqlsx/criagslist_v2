@@ -22,6 +22,7 @@ Route::delete('/users/{user}', 'UsersController@destroy')->name('users.destroy')
 */
 
 Route::get('/', 'StaticPagesController@home')->name('home');
+Route::post('/', 'StaticPagesController@home')->name('home');
 Route::get('signup', 'UsersController@create')->name('signup');
 
 Route::resource('users', 'UsersController');
