@@ -14,12 +14,37 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth', [            
-            'except' => ['create', 'store']
+            'except' => ['create', 'store', 'validate_username']
         ]);
 
         $this->middleware('guest', [
-            'only' => ['create']
+            'only' => ['create',  'validate_username']
         ]);
+    }
+
+    public function validate_username(Request $request){
+        $username = $request->input( 'username' );
+        $user = User::where('username', $username)->get();
+        if(count($user)>0){
+            return response()->json([
+                'result' => 'ko'
+            ]);
+        }else{
+            return response()->json([
+                'state' => 'ok'
+            ]);
+        }
+    }
+    public function validate_email(Request $request){
+        $username = $request->input( 'email' );
+        $user = User::find([
+            'email' => $email
+        ]);
+        if(count($user)>0){
+            return "error";
+        }else{
+            return "ok";
+        }
     }
 
     public function create()

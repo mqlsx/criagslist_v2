@@ -20,12 +20,40 @@ Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
 Route::patch('/users/{user}', 'UsersController@update')->name('users.update');
 Route::delete('/users/{user}', 'UsersController@destroy')->name('users.destroy');
 */
+use App\Models\User;
 
 Route::get('/', 'StaticPagesController@home')->name('home');
+Route::get('/validate_username', function(Request $request){
+    $username = $_GET['username'];
+    $user = User::where('username', $username)->get();
+    if(count($user)>0){
+        return response()->json([
+            'result' => "exist"
+        ]);
+    }else{
+        return response()->json([
+            'result' => "not exist"
+        ]);
+    }
+});
+Route::get('/validate_email', function(Request $request){
+    $email = $_GET['email'];
+    $user = User::where('email', $email)->get();
+    if(count($user)>0){
+        return response()->json([
+            'result' => "exist"
+        ]);
+    }else{
+        return response()->json([
+            'result' => "not exist"
+        ]);
+    }
+});
 Route::post('/', 'StaticPagesController@home')->name('home');
 Route::get('signup', 'UsersController@create')->name('signup');
 
 Route::resource('users', 'UsersController');
+
 Route::get('users/{user}/wishlist', 'UsersController@wishlist')->name('users.wishlist');
 Route::get('users/{user}/posting', 'UsersController@posting')->name('users.posting');
 

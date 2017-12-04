@@ -14,25 +14,24 @@
 
       <form method="POST" action="{{ route('users.store') }}">
       	{{ csrf_field() }}
-
 				<div class="form-group">
 					<label for="username">Username</label>
-					<input type="text" name="username" class="form-control" value="{{ old('username') }}">
+					<input type="text" id="username" name="username" class="form-control" value="{{ old('username') }}">
 				</div>
 
 				<div class="form-group">
 					<label for="email">Email</label>
-					<input type="text" name="email" class="form-control" value="{{ old('email') }}">
+					<input type="text" id="email" name="email" class="form-control" value="{{ old('email') }}">
 				</div>
 
 				<div class="form-group">
 					<label for="password">Password</label>
-					<input type="password" name="password" class="form-control" value="{{ old('password') }}" placeholder="at least 6 characters">
+					<input type="password" id="password" name="password" class="form-control" value="{{ old('password') }}" placeholder="at least 6 characters">
 				</div>
 
 				<div class="form-group">
 					<label for="password_confirmation">Re-enter password</label>
-					<input type="password" name="password_confirmation" class="form-control" value="{{ old('password_confirmation') }}">
+					<input type="password" id="repassword" name="password_confirmation" class="form-control" value="{{ old('password_confirmation') }}">
 				</div>
 				<br>
 
@@ -41,4 +40,9 @@
     </div>
   </div>
 </div>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+<script src="/js/validate.js"></script>
 @stop
