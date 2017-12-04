@@ -1,5 +1,5 @@
 @extends('layouts.default')
-
+@section('title', 'PHD Craigslist')
 @section('content')
 
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,900italic,700italic,700,500italic,400italic,500,300italic,300' rel='stylesheet' type='text/css'>
@@ -14,7 +14,8 @@
   <script type="text/javascript" src="js/platz/jquery.animate-shadow-min.js"></script>
   <script type="text/javascript" src="js/platz/main.js"></script>
   <div id="wrapper-container">
-    <div class="container object">
+    <div class="container object "style="display: inline-block;
+">
       <div>
           <form  class="form-inline" action="{{ route('home') }}" method='POST'>
             {{ csrf_field() }}
@@ -44,12 +45,18 @@
                 </dl>
             </a>
             <div id="wrapper-part-info">
-                <div id="part-info">{{ $product->name }}</div>
+                <div id="part-info" style="
+    text-align: center;">{{ $product->name }}</div>
             </div>
           </figure>
           @endforeach
         </section>
       </div>
     </div>
+
+    <div style="
+  width: 100%;
+  text-align: center;
+">{!! $products->render() !!}</div>
   </div>
 @stop

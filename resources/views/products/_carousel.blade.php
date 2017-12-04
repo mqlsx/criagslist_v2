@@ -11,11 +11,11 @@
       @for ($i = 0, $n = count($images); $i < $n; $i++)
         @if ($i === 0)
           <div class="item active">
-            <img src="{{ $images->get($i)->url }}" style="width: 590px; height: auto; display:block; margin:auto">
+            <img src="{{ $images->get($i)->url }}" style="width: 400px; height: 400px; display:block; margin:auto">
           </div>
         @else 
           <div class="item">
-            <img src="{{ $images->get($i)->url }}" style="width: 590px; height: auto; display:block; margin:auto">
+            <img src="{{ $images->get($i)->url }}" style="width: 400px; height: 400px; display:block; margin:auto">
           </div>
         @endif
       @endfor

@@ -34,7 +34,7 @@ class StaticPagesController extends Controller
             $products = $products->where('price', '<=', $request->input('max-price'));
         }
 
-        $products = $products->orderBy('created_at', 'desc')->paginate(10);
+        $products = $products->orderBy('created_at', 'desc')->paginate(8);
 
         foreach ($products as $product) {
             $image = $product->images()->first();

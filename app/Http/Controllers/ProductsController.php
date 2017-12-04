@@ -23,7 +23,7 @@ class ProductsController extends Controller
 
     public function show(Product $product)
     {   
-        $images = $product->images()->orderBy('created_at', 'asc')->paginate(5);
+        $images = $product->images()->orderBy('created_at', 'asc')->paginate(8);
         return view('products.show', compact('product', 'images'));
     }
 
@@ -90,7 +90,7 @@ class ProductsController extends Controller
 
         // // Get the results and return them.
         //$products = $products->get();
-        $products = $products->orderBy('created_at', 'desc')->paginate(10);
+        $products = $products->orderBy('created_at', 'desc')->paginate(8);
         return view('products.index', compact('products'));
 
 
@@ -152,7 +152,7 @@ class ProductsController extends Controller
             'contact' => $request->contact
         ]);
         
-        $images = $product->images()->orderBy('created_at', 'desc')->paginate(5);
+        $images = $product->images()->orderBy('created_at', 'desc')->paginate(8);
         return view('products.uploadImage', compact('product', 'images'));
     }
 

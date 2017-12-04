@@ -80,7 +80,7 @@ class UsersController extends Controller
     public function update(User $user, Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email|unique:users|max:255',
+            'email' => 'required|email|max:255',
             'password' => 'nullable|confirmed|min:6'
         ]);
 
@@ -142,15 +142,31 @@ class UsersController extends Controller
 
     public function wishlist(User $user)
     {
-        $collections = $user->collections()->orderBy('created_at', 'desc')->paginate(10);
-        return view('users.wishlist', compact('user', 'collections'));
+        $products = $user->collections()->orderBy('created_at', 'desc')->paginate(10);
+        foreach ($products as $product) {
+            $image = $product->images()->first();
+            if ($image==null) {
+                $product->img = "/img/not_uploaded.png";
+            } else {
+                $product->img = $image['url'];
+            }
+        }
+        return view('users.wishlist', compact('user', 'products'));
     }
 
     public function posting(User $user)
     {
         $products = new Product;
         $products = $products->where('user_id', '=', $user->id);
-        $products = $products->orderBy('created_at', 'desc')->paginate(10);
+        $products = $products->orderBy('created_at', 'desc')->paginate(8);
+        foreach ($products as $product) {
+            $image = $product->images()->first();
+            if ($image==null) {
+                $product->img = "/img/not_uploaded.png";
+            } else {
+                $product->img = $image['url'];
+            }
+        }
         return view('users.posting', compact('user', 'products'));
     }
 }
