@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-md-offset-2 col-md-8">
     <div style="margin-bottom:15px  ">
-      <span style="font-size:40px;margin-right:300px">{{ $product->name }}</span>
+      <span style="font-size:40px;">{{ $product->name }}</span>
       @can('update', $product)
       <button type="button" class="btn btn-default"  style="float: right; margin-top: 15px">
       <a href="{{ route('products.edit', $product->id) }}">
@@ -30,7 +30,7 @@
             <form class="form-inline" action="{{ route('products.destroy', $product->id) }}" method="POST">
               {{ csrf_field() }}
               {{ method_field('DELETE') }}
-              <button type="button" class="btn btn-primary">Delete</button>
+              <button type="submit" class="btn btn-primary">Delete</button>
             </form>
           </div>
         </div>
