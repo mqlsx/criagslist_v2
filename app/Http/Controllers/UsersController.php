@@ -13,13 +13,13 @@ class UsersController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth', [            
-        //     'except' => ['create', 'store', 'validate_username']
-        // ]);
+        $this->middleware('auth', [            
+            'except' => ['create', 'store', 'validate_username']
+        ]);
 
-        // $this->middleware('guest', [
-        //     'only' => ['create',  'validate_username']
-        // ]);
+        $this->middleware('guest', [
+            'only' => ['create',  'validate_username']
+        ]);
     }
 
     public function validate_username(Request $request){
