@@ -22,7 +22,7 @@ class StaticPagesController extends Controller
             $products = $products->where('name', 'LIKE', '%' . $request->input('name') . '%');
         }
 
-        if ($request->has('category') && !is_null($request->input('category'))) {
+        if ($request->has('category') && !is_null($request->input('category')) && $request->input('category')!="all") {
             $products = $products->where('category', '=', $request->input('category'));
         }
 
@@ -44,6 +44,7 @@ class StaticPagesController extends Controller
                 $product->img = $image['url'];
             }
         }
+        $request->flash();
         return view('static_pages/home', compact('products'));
 
     }

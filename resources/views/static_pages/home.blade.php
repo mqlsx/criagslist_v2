@@ -15,6 +15,21 @@
   <script type="text/javascript" src="js/platz/main.js"></script>
   <div id="wrapper-container">
     <div class="container object">
+      <div>
+          <form  class="form-inline" action="{{ route('home') }}" method='POST'>
+            {{ csrf_field() }}
+            <input style="width:600px" class="form-control" type='text' name='name' value="{{ old('name') }}"  placeholder='name'>
+            <select class="form-control" name="category" >
+              <option value="all">All</option>
+              <option value="car">Car</option>
+              <option value="book">Book</option>
+              <option value="clothes">Clothes</option>
+            </select>
+            <input style="width:120px"  class="form-control" type='number' name='min-price'  value="{{ old('min-price') }}" placeholder='min price' step="0.01" min="0">
+            <input style="width:120px"  class="form-control" type='number' name='max-price'  value="{{ old('max-price') }}" placeholder='max price' step="0.01" min="0">
+            <button style="margin-bottom:15px" class="btn btn-default" type='submit'>update search</button>
+          </form>
+      </div>
       <div id="main-container-image">
         <section class="work">
           @foreach ($products as $product)
