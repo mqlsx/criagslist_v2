@@ -1,5 +1,5 @@
 @extends('layouts.default')
-
+@section('title', 'PHD Craigslist')
 @section('content')
 
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,900italic,700italic,700,500italic,400italic,500,300italic,300' rel='stylesheet' type='text/css'>
@@ -29,7 +29,8 @@
                 </dl>
             </a>
             <div id="wrapper-part-info">
-                <div id="part-info">{{ $product->name }}</div>
+                <div id="part-info" style="
+    text-align: center;">{{ $product->name }}</div>
             </div>
           </figure>
           @endforeach

@@ -55,7 +55,7 @@ class UsersController extends Controller
     public function update(User $user, Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email|unique:users|max:255',
+            'email' => 'required|email|max:255',
             'password' => 'nullable|confirmed|min:6'
         ]);
 
@@ -117,8 +117,8 @@ class UsersController extends Controller
 
     public function wishlist(User $user)
     {
-        $collections = $user->collections()->orderBy('created_at', 'desc')->paginate(10);
-        return view('users.wishlist', compact('user', 'collections'));
+        $products = $user->collections()->orderBy('created_at', 'desc')->paginate(10);
+        return view('users.wishlist', compact('user', 'products'));
     }
 
     public function posting(User $user)

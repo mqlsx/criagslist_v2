@@ -28,6 +28,16 @@
                   </a>
                 </li>
 
+                <!-- @if (Auth::user()->id == '1')
+                @can('index', Auth::user())
+                <li>
+                  <a href="{{ route('users.index') }}">
+                    <button class="btn btn-sm btn-primary">All Users</button>
+                  </a>
+                </li>
+                @endcan
+                @endif -->
+
 
                 <li class="divider"></li>
                 <li >

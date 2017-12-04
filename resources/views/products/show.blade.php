@@ -6,14 +6,14 @@
     <div style="margin-bottom:15px  ">
       <span style="font-size:40px;margin-right:300px">{{ $product->name }}</span>
       @can('update', $product)
-      <button type="button" class="btn btn-default">
+      <button type="button" class="btn btn-default"  style="float: right; margin-top: 15px">
       <a href="{{ route('products.edit', $product->id) }}">
           <span class="glyphicon glyphicon-pencil">edit</span>
       </a>
       </button>
       @endcan
       @can('destroy', $product)
-      <button type="button" class="btn btn-default">
+      <button type="button" class="btn btn-default"  style="float: right; margin-top: 15px">
       <a href="#" onclick="$('#myModal').modal('show')">
           <span class="glyphicon glyphicon-remove">delete</span>
       </a>
@@ -46,7 +46,7 @@
     </section>
 
     <section class="product_info">
-      <h2><b>Product Info</b></h2>
+      <h2><b>Post Info</b></h2>
       <table class="table table-hover">
         <col width="50">
         <col width="250">
